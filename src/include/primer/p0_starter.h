@@ -58,25 +58,57 @@ template <typename T>
 class RowMatrix : public Matrix<T> {
  public:
   // TODO(P0): Add implementation
-  RowMatrix(int r, int c) : Matrix<T>(r, c) {}
+  RowMatrix(int r, int c) : Matrix<T>(r, c) {
+    data_= new T*[r];
+    for(i=0;i<r;i++){
+      data_[i]=new T[c]
+    }
+
+    for(i=0;i<r;i++){
+      for(j=0;j<c;j++){
+        data_[i][j]=0;
+      }
+    }
+  }
 
   // TODO(P0): Add implementation
-  int GetRows() override { return 0; }
+  int GetRows() override { 
+    return Matrix<T>::rows; 
+    }
 
   // TODO(P0): Add implementation
-  int GetColumns() override { return 0; }
+  int GetColumns() override { 
+    return Matrix<T>::cols;
+   }
 
   // TODO(P0): Add implementation
-  T GetElem(int i, int j) override { return data_[i][j]; }
+  T GetElem(int i, int j) override { 
+    return data_[i][j];
+    }
 
   // TODO(P0): Add implementation
-  void SetElem(int i, int j, T val) override {}
+  void SetElem(int i, int j, T val) override {
+    data_[i][j]=val;
+  }
 
   // TODO(P0): Add implementation
-  void MatImport(T *arr) override {}
+  void MatImport(T *arr) override {
+    int count=0;
+    for(i=0,i<Matrix<T>::rows;i++){
+      for(j=0;k<Matrix<T>::cols;j++){
+        data_[i][j]=arr[count];
+        count=count+1;
+      }
+    }
+  }
 
   // TODO(P0): Add implementation
-  ~RowMatrix() override = default;
+  ~RowMatrix() override{
+    for(int i=0;i<Matrix<T>::rows; i++){
+        delete[] data_[i];
+    }
+    delete[] data_;
+  }
 
  private:
   // 2D array containing the elements of the matrix in row-major format
