@@ -60,12 +60,12 @@ class RowMatrix : public Matrix<T> {
   // TODO(P0): Add implementation
   RowMatrix(int r, int c) : Matrix<T>(r, c) {
     data_= new T*[r];
-    for(i=0;i<r;i++){
-      data_[i]=new T[c]
+    for(int i=0;i<r;i++){
+      data_[i]=new T[c];
     }
 
-    for(i=0;i<r;i++){
-      for(j=0;j<c;j++){
+    for(int i=0;i<r;i++){
+      for(int j=0;j<c;j++){
         data_[i][j]=0;
       }
     }
@@ -94,8 +94,8 @@ class RowMatrix : public Matrix<T> {
   // TODO(P0): Add implementation
   void MatImport(T *arr) override {
     int count=0;
-    for(i=0,i<Matrix<T>::rows;i++){
-      for(j=0;k<Matrix<T>::cols;j++){
+    for(int i=0;i<Matrix<T>::rows;i++){
+      for(int j=0;j<Matrix<T>::cols;j++){
         data_[i][j]=arr[count];
         count=count+1;
       }
