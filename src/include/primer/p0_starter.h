@@ -23,7 +23,11 @@ template <typename T>
 class Matrix {
  protected:
   // TODO(P0): Add implementation
-  Matrix(int r, int c) {}
+  Matrix(int r, int c) {
+    rows=r;
+    cols=c;
+    linear=new T[r*c];
+  }
 
   // # of rows in the matrix
   int rows;
@@ -51,7 +55,9 @@ class Matrix {
   virtual void MatImport(T *arr) = 0;
 
   // TODO(P0): Add implementation
-  virtual ~Matrix() = default;
+  virtual ~Matrix(){
+    delete[] linear;
+  }
 };
 
 template <typename T>
@@ -74,17 +80,17 @@ class RowMatrix : public Matrix<T> {
   // TODO(P0): Add implementation
   int GetRows() override { 
     return Matrix<T>::rows; 
-    }
+  }
 
   // TODO(P0): Add implementation
   int GetColumns() override { 
     return Matrix<T>::cols;
-   }
+  }
 
   // TODO(P0): Add implementation
   T GetElem(int i, int j) override { 
     return data_[i][j];
-    }
+  }
 
   // TODO(P0): Add implementation
   void SetElem(int i, int j, T val) override {
