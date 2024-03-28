@@ -69,12 +69,6 @@ class RowMatrix : public Matrix<T> {
     for(int i=0;i<r;i++){
       data_[i]=new T[c];
     }
-
-    for(int i=0;i<r;i++){
-      for(int j=0;j<c;j++){
-        data_[i][j]=0;
-      }
-    }
   }
 
   // TODO(P0): Add implementation
