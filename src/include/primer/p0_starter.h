@@ -164,7 +164,7 @@ class RowMatrixOperations {
     int cols1=mat1->GetColumns();
     int rows2=mat2->GetRows();
     int cols2=mat2->GetColumns();
-    if(cols1!=rows2 || cols1!=rows2){
+    if(cols1!=rows2 || col2!=rows1){
       return std::unique_ptr<RowMatrix<T>>(nullptr);
     }
 
