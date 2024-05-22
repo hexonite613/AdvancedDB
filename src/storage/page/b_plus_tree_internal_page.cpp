@@ -75,7 +75,7 @@ INDEX_TEMPLATE_ARGUMENTS
 ValueType B_PLUS_TREE_INTERNAL_PAGE_TYPE::Lookup(const KeyType &key, const KeyComparator &comparator) const {
   auto k_it=std::lower_bound(array+1, array+GetSize(),key,[&comparator](const auto &pair, auto k){return comparator(pair.first,k)<0;});
   if(k_it==array+GetSize()){
-    return ValueAt(GetSize()-1)
+    return ValueAt(GetSize()-1);
   }
   if(comparator(k_it->first,key)==0){
     return k_it->second;
