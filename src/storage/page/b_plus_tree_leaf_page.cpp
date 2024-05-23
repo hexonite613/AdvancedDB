@@ -85,6 +85,7 @@ const MappingType &B_PLUS_TREE_LEAF_PAGE_TYPE::GetItem(int index) {
 INDEX_TEMPLATE_ARGUMENTS
 int B_PLUS_TREE_LEAF_PAGE_TYPE::Insert(const KeyType &key, const ValueType &value, const KeyComparator &comparator) {
   auto k_it=std::lower_bound(array, array+GetSize(),key,[&comparator](const auto &pair, auto k){return comparator(pair.first,k)<0;});
+  
   if(k_it==array+GetSize()){
     array[GetSize()].first = key;
     array[GetSize()].second = value;
@@ -209,7 +210,7 @@ void B_PLUS_TREE_LEAF_PAGE_TYPE::CopyLastFrom(const MappingType &item) {
  */
 INDEX_TEMPLATE_ARGUMENTS
 void B_PLUS_TREE_LEAF_PAGE_TYPE::MoveLastToFrontOf(BPlusTreeLeafPage *recipient) {
-    auto last_item = GetItem(GetSize() - 1);
+    auto last_item = array[GetSize()-1];
     IncreaseSize(-1);
     std::move_backward(recipient->array, recipient->array + recipient->GetSize(), recipient->array + recipient->GetSize() + 1);
 
